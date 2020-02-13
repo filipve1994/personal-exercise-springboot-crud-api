@@ -1,0 +1,103 @@
+=  UPMVIZIWORKS API Specification
+{author} <{email}>
+{revnumber}, {revdate}
+:doctype: book
+
+//[[introduction]]
+[introduction]
+= Introduction
+
+This is an example of Spring REST Docs generated documentation.
+
+[[overview]]
+= Overview
+
+This BACKEND API is made to send data from external services and DB mapping.
+
+[[overview-http-verbs]]
+== HTTP verbs
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `PUT`
+| Used to update an existing resource, full updates only
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes.
+
+|===
+| Status code | Usage
+
+//| `200 OK`
+//| The request completed successfully
+
+| `200 OK`
+| Standard response for successful HTTP requests.
+
+The actual response will depend on the request method used.
+
+In a GET request, the response will contain an entity corresponding to the requested resource.
+
+In a POST request, the response will contain an entity describing or containing the result of the action.
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+The request has been fulfilled and resulted in a new resource being created.
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+The server successfully processed the request, but is not returning any content.
+
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+
+
+| `404 Not Found`
+| The requested resource did not exist
+
+The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible.
+
+|===
+
+[[resources]]
+= Resources
+
+[[resources_lines]]
+== Lines
+
+The Lines resource is used to list Lines.
+
+include::lines/index.adoc[]
+
+[[resources_pages]]
+== Pages
+include::pages/index.adoc[]
+
+
+

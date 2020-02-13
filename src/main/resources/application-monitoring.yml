@@ -1,0 +1,128 @@
+management:
+  auditevents:
+    enabled: true # Whether to enable storage of audit events.
+  endpoint:
+    auditevents:
+      cache:
+        time-to-live: 0ms #Maximum time that a response can be cached.
+      enabled: true # Whether to enable the auditevents endpoint.
+    beans:
+      enabled: true # Whether to enable the beans endpoint.
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+    caches:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the caches endpoint.
+    conditions:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the conditions endpoint.
+    configprops:
+      enabled: true # Whether to enable the configprops endpoint.
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+    env:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+    health:
+      enabled: true # Whether to enable the health endpoint.
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      show-components: always # When to show components. If not specified the 'show-details' setting will be used.
+      show-details: always # default: never => When to show full health details.
+      status:
+        order: DOWN,OUT_OF_SERVICE,UP,UNKNOWN # => WComma-separated list of health statuses in order of severity.
+        # http-mapping:
+      # group:
+    heapdump:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the heapdump endpoint.
+    httptrace:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the httptrace endpoint.
+    info:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the info endpoint.
+    logfile:
+      enabled: true # Whether to enable the logfile endpoint.
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      #external-file:   #External Logfile to be accessed. Can be used if the logfile is written by output redirect and not by the logging system itself.
+    loggers:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the loggers endpoint.
+    mappings:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the mappings endpoint.
+    metrics:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the metrics endpoint.
+    scheduledtasks:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: true # Whether to enable the scheduledtasks endpoint.
+    shutdown:
+      enabled: true # default: false => Whether to enable the shutdown endpoint.
+    threaddump:
+      cache:
+        time-to-live: 0ms # Maximum time that a response can be cached.
+      enabled: false # default: true => Whether to enable the threaddump endpoint.
+  endpoints:
+    enabled-by-default: true # Whether to enable or disable all endpoints by default.
+    web:
+      base-path: /actuator # Base path for Web endpoints. Relative to server.servlet.context-path or management.server.servlet.context-path if management.server.port is configured.
+      exposure:
+        include: '*' # Endpoint IDs that should be included or '*' for all.
+  health:
+    defaults:
+      enabled: true # Whether to enable default health indicators.
+    db:
+      enabled: true # Whether to enable database health check.
+    diskspace:
+      enabled: true # Whether to enable disk space health check.
+      # path: # Path used to compute the available disk space.
+      threshold: 10MB # Minimum disk space that should be available.
+    ping:
+      enabled: true # Whether to enable ping health check.
+  info:
+    build:
+      enabled: true # Whether to enable build info.
+    defaults:
+      enabled: true # Whether to enable default info contributors.
+    env:
+      enabled: true # Whether to enable environment info.
+    git:
+      enabled: true # Whether to enable git info.
+      mode: simple #
+  #      mode: full #
+  metrics:
+    export:
+      jmx:
+        enabled: true # Whether exporting of metrics to JMX is enabled.
+        domain: metrics # default: metrics => Metrics JMX domain name.
+    web:
+      client:
+        request:
+          autotime:
+            enabled: true # Whether to automatically time web client requests.
+          metric-name: "http.client.requests" # Name of the metric for sent requests.
+        max-uri-tags: 100 # Maximum number of unique URI tag values allowed. After the max number of tag values is reached, metrics with additional tag values are denied by filter.
+      server:
+        max-uri-tags: 100 # Maximum number of unique URI tag values allowed. After the max number of tag values is reached, metrics with additional tag values are denied by filter.
+        request:
+          autotime:
+            enabled: true # Whether to automatically time web server requests.
+          metric-name: "http.server.requests" # => Name of the metric for received requests.
+  server:
+    add-application-context-header: false # default: false => Add the "X-Application-Context" HTTP header in each response.
+  trace:
+    http:
+      enabled: true # default: true => Whether to enable HTTP request-response tracing.
+      include: REQUEST_HEADERS,RESPONSE_HEADERS,TIME_TAKEN # Items to be included in the trace. Defaults to request headers (excluding Authorization but including Cookie), response headers (including Set-Cookie), and time taken.

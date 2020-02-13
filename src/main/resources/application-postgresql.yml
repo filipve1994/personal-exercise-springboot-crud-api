@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url:
+    driver-class-name:
+    username:
+    password:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
