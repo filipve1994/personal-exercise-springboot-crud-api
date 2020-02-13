@@ -32,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/
+ * https://medium.com/@sheikarbaz5/spring-boot-with-tdd-test-driven-development-part-i-be1b90da51e
  */
 @WebMvcTest(controllers = ToDoController.class)
 @AutoConfigureRestDocs(outputDir = "target/generated-snippets")
@@ -86,11 +87,8 @@ class ToDoControllerTest {
                 .accept(MediaType.APPLICATION_JSON_VALUE)
         )
                 .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        resultActions
-                .andExpect(jsonPath("$", Matchers.hasSize(2))
-                );
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$", Matchers.hasSize(2)));
 
         resultActions.andDo(
                 document("todos/find-all",
@@ -159,8 +157,7 @@ class ToDoControllerTest {
         )
                 .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(jsonPath("$.id").exists())
-                ;
+                .andExpect(jsonPath("$.id").exists());
 
         resultActions.andDo(
                 document("todos/create",
