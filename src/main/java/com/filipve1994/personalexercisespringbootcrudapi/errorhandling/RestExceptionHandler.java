@@ -1,5 +1,6 @@
 package com.filipve1994.personalexercisespringbootcrudapi.errorhandling;
 
+import com.filipve1994.personalexercisespringbootcrudapi.errorhandling.exceptions.ItemNotFoundException;
 import com.filipve1994.personalexercisespringbootcrudapi.errorhandling.exceptions.UserNotFoundException;
 import com.filipve1994.personalexercisespringbootcrudapi.errorhandling.models.ApiError;
 import org.hibernate.exception.SQLGrammarException;
@@ -295,7 +296,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      * @since 4.0
      */
     @ExceptionHandler(value = {
-            UserNotFoundException.class
+            UserNotFoundException.class,
+            ItemNotFoundException.class
     })
     protected ResponseEntity<Object> handleEntityNotFound(RuntimeException ex) {
         logger.info("RestExceptionhandler - handleEntityNotFound");

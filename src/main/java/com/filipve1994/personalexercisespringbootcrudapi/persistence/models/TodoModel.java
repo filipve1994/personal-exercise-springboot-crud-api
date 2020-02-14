@@ -18,4 +18,7 @@ public class TodoModel {
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "COMPLETED")
+    private Boolean completed;
 }

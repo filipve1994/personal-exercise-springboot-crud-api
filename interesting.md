@@ -1,0 +1,24 @@
+# interesting articles
+
+- https://www.onlinetutorialspoint.com/spring-boot/sending-spring-boot-kafka-json-message-to-kafka-topic.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-kafka-consume-json-messages-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-kafka-producer-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-batch-example-csv-to-database.html
+- https://www.onlinetutorialspoint.com/spring-boot/step-by-step-spring-boot-docker-deployment-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-security-mysql-database-integration-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-in-memory-basic-authentication-security.html
+- https://www.onlinetutorialspoint.com/spring-boot/how-to-enable-spring-boot-cors-example-crossorigin.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-rabbitmq-message-publishing-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-rabbitmq-consumer-messages-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-pdf-itext-integration-with-string-template.html
+- https://www.onlinetutorialspoint.com/spring-boot/spring-boot-hazelcast-cache-example.html
+- https://www.onlinetutorialspoint.com/spring-boot/how-to-send-spring-boot-mail-example.html
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 

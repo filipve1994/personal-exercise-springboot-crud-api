@@ -1,4 +1,4 @@
-=  UPMVIZIWORKS API Specification
+=  PERSONAL EXERCISE SPRINGBOOT CRUD API Specification
 {author} <{email}>
 {revnumber}, {revdate}
 :doctype: book
@@ -85,19 +85,24 @@ The requested resource could not be found but may be available again in the futu
 
 |===
 
-[[resources]]
-= Resources
+//[[resources]]
+//= Resources
+//
+//[[resources_lines]]
+//== Lines
+//
+//The Lines resource is used to list Lines.
+//
+//include::lines/index.adoc[]
+//
+//[[resources_pages]]
+//== Pages
+//include::pages/index.adoc[]
 
-[[resources_lines]]
-== Lines
-
-The Lines resource is used to list Lines.
-
-include::lines/index.adoc[]
-
-[[resources_pages]]
-== Pages
-include::pages/index.adoc[]
-
+[[examples]]
+== Examples
+include::user/find-all/index.adoc[]
+include::user/find-one/index.adoc[]
+include::user/save/index.adoc[]
 
 

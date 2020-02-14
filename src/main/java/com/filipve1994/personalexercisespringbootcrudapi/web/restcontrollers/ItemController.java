@@ -1,14 +1,12 @@
 package com.filipve1994.personalexercisespringbootcrudapi.web.restcontrollers;
 
-import com.filipve1994.personalexercisespringbootcrudapi.persistence.dto.TodoInput;
+import com.filipve1994.personalexercisespringbootcrudapi.persistence.dto.ItemInput;
+import com.filipve1994.personalexercisespringbootcrudapi.persistence.models.Item;
 import com.filipve1994.personalexercisespringbootcrudapi.persistence.models.TodoModel;
+import com.filipve1994.personalexercisespringbootcrudapi.persistence.services.ItemService;
 import com.filipve1994.personalexercisespringbootcrudapi.persistence.services.ToDoService;
-import io.swagger.annotations.Api;
-import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,50 +24,51 @@ import static com.filipve1994.personalexercisespringbootcrudapi.common.utils.Res
 import static com.filipve1994.personalexercisespringbootcrudapi.common.utils.ResponseUtil.createdResponse;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * https://www.onlinetutorialspoint.com/spring-boot/spring-boot-exception-handling-rest-service-crud-operations.html
+ *
+ */
 @RestController
-@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, value = "/api/todos")
+@RequestMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, value = "/api/items")
 // @Api(tags = "")
-public class ToDoController {
+public class ItemController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ToDoController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
-    private final ToDoService toDoService;
+    private final ItemService itemService;
 
-    public ToDoController(ToDoService toDoService) {
-        this.toDoService = toDoService;
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
     }
 
-    @GetMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<TodoModel>> findAll() {
+    @GetMapping(value = "/all", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity findAll() {
         logger.info("FindAll method used.");
-        return ResponseEntity.ok(toDoService.findAll());
+        return ResponseEntity.ok(itemService.findAllItems());
     }
 
     @GetMapping(value = "/{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<TodoModel> findById(@PathVariable Long id) {
+    public ResponseEntity findById(@PathVariable int id) {
         logger.info("findById method used.");
-        return ResponseEntity.ok(toDoService.findById(id));
+        return ResponseEntity.ok(itemService.findById(id));
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<TodoModel> create(@Valid @RequestBody TodoInput todoInput) {
+    public ResponseEntity create(@Valid @RequestBody ItemInput itemInput) {
         logger.info("create method used.");
-//        return new ResponseEntity<TodoModel>(toDoService.save(todoModel), HttpStatus.CREATED);
-        return createdResponse(toDoService.save(todoInput));
+        return createdResponse(itemService.addItem(itemInput));
     }
 
     @PutMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity update(@PathVariable Long id, @Valid @RequestBody TodoInput todoInput) {
+    public ResponseEntity update(@PathVariable int id, @Valid @RequestBody ItemInput itemInput) {
         logger.info("update method used.");
-        return ResponseEntity.ok(toDoService.update(id, todoInput));
+        return ResponseEntity.ok(itemService.updateItem(id, itemInput));
     }
 
     @DeleteMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteById(@PathVariable Long id) {
+    public ResponseEntity deleteById(@PathVariable int id) {
         logger.info("deleteById method used.");
-        toDoService.deleteToDoById(id);
-
-//        return ResponseEntity.accepted().build();
+        itemService.deleteItemById(id);
         return acceptedResponse();
     }
 

@@ -1,6 +1,7 @@
 package com.filipve1994.personalexercisespringbootcrudapi.persistence.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class UserInput {
 
     @NotNull(message = "Date of birth should not be empty")
     @Past(message = "Date of birth should be in the past")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     @NotNull(message = "The amount of siblings should not be empty")

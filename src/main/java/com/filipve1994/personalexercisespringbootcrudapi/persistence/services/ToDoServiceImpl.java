@@ -1,6 +1,7 @@
 package com.filipve1994.personalexercisespringbootcrudapi.persistence.services;
 
 import com.filipve1994.personalexercisespringbootcrudapi.errorhandling.exceptions.ToDoModelNotFoundException;
+import com.filipve1994.personalexercisespringbootcrudapi.persistence.dto.TodoInput;
 import com.filipve1994.personalexercisespringbootcrudapi.persistence.models.TodoModel;
 import com.filipve1994.personalexercisespringbootcrudapi.persistence.repositories.ToDoRepository;
 import org.slf4j.Logger;
@@ -33,12 +34,16 @@ public class ToDoServiceImpl implements ToDoService {
     }
 
     @Override
-    public TodoModel save(TodoModel todoModel) {
-        return toDoRepository.save(todoModel);
+    public TodoModel save(TodoInput todoInput) {
+        TodoModel todoModelToSave = new TodoModel();
+        todoModelToSave.setName(todoInput.getName());
+        todoModelToSave.setCompleted(todoInput.getCompleted());
+
+        return toDoRepository.save(todoModelToSave);
     }
 
     @Override
-    public TodoModel update(Long id, TodoModel todoModel) {
+    public TodoModel update(Long id, TodoInput todoInput) {
 
         if (!toDoRepository.findById(id).isPresent()) {
             logger.error("Id " + id + " is not existed.");
@@ -47,11 +52,12 @@ public class ToDoServiceImpl implements ToDoService {
         }
 
         TodoModel todoModelFromDB = toDoRepository.findById(id).get();
-        todoModelFromDB.setName(todoModel.getName());
+        todoModelFromDB.setName(todoInput.getName());
+        todoModelFromDB.setCompleted(todoInput.getCompleted());
 
         toDoRepository.save(todoModelFromDB);
 
-        return todoModel;
+        return todoModelFromDB;
     }
 
     @Override
